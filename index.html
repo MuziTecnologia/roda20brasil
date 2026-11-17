@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roda20 Brasil | Especialista em Rodas</title>
+<meta name="description" content="Roda20 Brasil — especialista em recuperação de rodas: solda, desempeno, pintura, diamantação, reforma e personalização. Orçamento pelo WhatsApp.">
+<meta name="theme-color" content="#0a1a8f">
+<link rel="icon" href="assets/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:ital,wght@0,600;0,800;1,700;1,800;1,900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#0a1a8f;
+  --blue-2:#0d22b0;
+  --blue-deep:#050c4a;
+  --ink:#06091f;
+  --sky:#1c6be6;
+  --yellow:#ffc800;
+  --green:#19a84a;
+  --white:#ffffff;
+  --paper:#f2f3f7;
+  --muted:#5b6080;
+  --line:rgba(255,255,255,.14);
+  --g:clamp(16px,4vw,72px);           /* gutter lateral — pequeno, sem colunas vazias */
+  --display:'Anton',Impact,sans-serif;
+  --cond:'Barlow Condensed','Arial Narrow',sans-serif;
+  --body:'Barlow',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--ink);color:var(--white);line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- Logo (recorte + remoção do fundo azul via filtro SVG) ---------- */
+.logo{position:relative;display:block;aspect-ratio:980/245;overflow:hidden}
+.logo img{position:absolute;width:127.96%;max-width:none;left:-15.31%;top:-208.16%;filter:url(#keyBlue)}
+
+/* ---------- Botões ---------- */
+.btn{display:inline-flex;align-items:center;gap:.6em;font-family:var(--cond);font-weight:800;font-style:italic;text-transform:uppercase;letter-spacing:.06em;font-size:clamp(15px,1.1vw,18px);padding:1em 1.6em;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);transition:transform .25s,background .25s,color .25s}
+.btn svg{width:1.3em;height:1.3em;flex:none}
+.btn--yellow{background:var(--yellow);color:var(--blue-deep)}
+.btn--yellow:hover{background:#fff;transform:translateY(-2px)}
+.btn--ghost{background:rgba(255,255,255,.08);color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.35)}
+.btn--ghost:hover{background:#fff;color:var(--blue-deep)}
+.btn--green{background:var(--green);color:#fff}
+.btn--green:hover{background:#fff;color:var(--blue-deep);transform:translateY(-2px)}
+
+.stripes{display:inline-flex;gap:5px}
+.stripes i{width:26px;height:9px;transform:skewX(-30deg);display:block}
+.stripes i:nth-child(1){background:var(--green)}
+.stripes i:nth-child(2){background:var(--yellow)}
+.stripes i:nth-child(3){background:var(--sky)}
+
+.eyebrow{display:flex;align-items:center;gap:14px;font-family:var(--cond);font-weight:700;font-style:italic;text-transform:uppercase;letter-spacing:.22em;font-size:clamp(13px,1vw,16px)}
+
+.h-sec{font-family:var(--cond);text-transform:uppercase;line-height:.92;font-size:clamp(40px,5.2vw,96px)}
+.h-sec{flex:none}
+.h-sec span{display:block;white-space:nowrap;font-weight:600;font-style:normal;font-size:.48em;letter-spacing:.08em;opacity:.8}
+.h-sec strong{display:block;font-weight:900;font-style:italic}
+
+/* ---------- Navegação ---------- */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px var(--g);transition:background .3s,padding .3s,box-shadow .3s}
+.nav.is-scrolled{background:rgba(5,12,74,.92);backdrop-filter:blur(10px);padding-top:10px;padding-bottom:10px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.nav .logo{width:clamp(130px,11vw,180px)}
+.nav-links{display:flex;gap:clamp(18px,2.4vw,44px);font-family:var(--cond);font-weight:700;font-style:italic;text-transform:uppercase;letter-spacing:.12em;font-size:15px}
+.nav-links a{position:relative;padding:6px 0;opacity:.85;transition:opacity .2s}
+.nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:3px;background:var(--yellow);transition:right .25s}
+.nav-links a:hover{opacity:1}
+.nav-links a:hover::after{right:0}
+.nav .btn{padding:.75em 1.3em;font-size:14px}
+.nav-toggle{display:none;background:none;border:0;color:#fff;width:44px;height:44px;cursor:pointer}
+.nav-toggle svg{width:28px;height:28px}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;isolation:isolate;background:var(--blue)}
+.hero-bg{position:absolute;inset:0;z-index:-3}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:blur(8px) grayscale(1) contrast(1.1);transform:scale(1.12)}
+.hero-bg::after{content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(60% 70% at 18% 45%, rgba(28,107,230,.45), transparent 70%),
+    repeating-linear-gradient(115deg, rgba(255,255,255,.035) 0 2px, transparent 2px 22px),
+    linear-gradient(100deg, rgba(10,26,143,.97) 0%, rgba(10,26,143,.92) 48%, rgba(5,12,74,.85) 100%);}
+.hero-photo,.hero-slash{position:absolute;top:0;bottom:0;right:0;width:46vw;clip-path:polygon(24% 0,100% 0,100% 100%,0 100%)}
+.hero-photo{z-index:-1}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 32%;transform:scale(1.04);animation:heroZoom 14s ease-out forwards}
+.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,12,74,.35),transparent 30%,transparent 65%,rgba(5,12,74,.75))}
+.hero-slash{z-index:-2}
+.hero-slash.s1{right:22px;background:var(--sky)}
+.hero-slash.s2{right:44px;background:var(--yellow)}
+.hero-slash.s3{right:66px;background:var(--green)}
+@keyframes heroZoom{to{transform:scale(1)}}
+
+.hero-content{position:relative;padding:120px var(--g) 140px;width:min(60vw,1100px)}
+.hero .eyebrow{margin-bottom:clamp(18px,2.5vw,36px);color:#fff}
+.hero .logo{width:min(52vw,940px);margin-left:-.6vw;filter:drop-shadow(0 18px 40px rgba(0,0,0,.35))}
+.hero-tag{margin-top:clamp(16px,2vw,28px);font-family:var(--cond);font-weight:600;font-size:clamp(18px,1.6vw,26px);letter-spacing:.04em;color:rgba(255,255,255,.85)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:clamp(26px,3.2vw,48px)}
+.hero-foot{position:absolute;left:var(--g);right:calc(var(--g) + 40px);bottom:72px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-family:var(--cond);font-weight:700;font-style:italic;text-transform:uppercase;letter-spacing:.18em;font-size:14px;color:rgba(255,255,255,.75)}
+.hero-foot ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px 0}
+.hero-foot li{display:flex;align-items:center}
+.hero-foot li+li::before{content:"";width:6px;height:6px;background:var(--yellow);transform:rotate(45deg);margin:0 18px}
+.hero-chip{display:flex;align-items:center;gap:10px;background:rgba(5,12,74,.7);backdrop-filter:blur(6px);padding:10px 16px;color:#fff;letter-spacing:.14em}
+.hero-chip svg{width:18px;height:18px;color:var(--yellow)}
+
+/* ---------- Faixa animada ---------- */
+.ticker{position:relative;z-index:2;background:var(--yellow);color:var(--blue-deep);overflow:hidden;transform:skewY(-1.6deg);margin:-26px 0 -10px;box-shadow:0 14px 30px rgba(0,0,0,.25)}
+.ticker-track{display:flex;width:max-content;animation:ticker 32s linear infinite}
+.ticker-track span{display:flex;align-items:center;gap:28px;padding:18px 14px;font-family:var(--cond);font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(22px,2.2vw,36px);letter-spacing:.04em;white-space:nowrap}
+.ticker-track span::after{content:"";width:12px;height:12px;background:var(--blue);transform:rotate(45deg)}
+@keyframes ticker{to{transform:translateX(-50%)}}
+
+/* ---------- Serviços ---------- */
+.services{position:relative;background:var(--paper);color:var(--ink);display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);min-height:100vh;overflow:hidden}
+.services-main{padding:clamp(90px,10vw,150px) var(--g) clamp(60px,7vw,110px)}
+.services-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:clamp(32px,4vw,60px)}
+.services-head .h-sec span{color:var(--blue)}
+.services-head p{max-width:420px;color:var(--muted);font-size:clamp(15px,1.05vw,17px)}
+.svc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.svc{position:relative;background:#e4e6ee;padding:clamp(18px,1.6vw,28px);min-height:clamp(170px,14vw,230px);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;transition:background .3s,color .3s,transform .3s}
+.svc::before{content:"";position:absolute;left:0;top:0;width:100%;height:4px;background:linear-gradient(90deg,var(--green) 0 33%,var(--yellow) 33% 66%,var(--sky) 66%);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.svc:hover{background:var(--blue);color:#fff;transform:translateY(-4px)}
+.svc:hover::before{transform:scaleX(1)}
+.svc svg{width:42px;height:42px;color:var(--blue);transition:color .3s}
+.svc:hover svg{color:var(--yellow)}
+.svc h3{font-family:var(--cond);font-weight:800;font-style:italic;text-transform:uppercase;font-size:clamp(20px,1.6vw,26px);line-height:1;margin-top:18px}
+.svc p{font-size:14px;line-height:1.4;margin-top:8px;opacity:.75}
+.svc--cta{background:var(--yellow);color:var(--blue-deep)}
+.svc--cta svg{color:var(--blue-deep)}
+.svc--cta:hover{background:var(--green)}
+.svc--cta .arrow{font-family:var(--display);font-size:42px;line-height:1}
+
+.services-art{position:relative;min-height:520px}
+.services-art::before{content:"";position:absolute;inset:0;background:var(--blue);clip-path:polygon(38% 0,100% 0,100% 100%,0 100%)}
+.services-art .photo{position:absolute;inset:8% 0 8% 14%;clip-path:polygon(30% 0,100% 0,100% 100%,0 100%);overflow:hidden}
+.services-art .photo img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.services-art .badge{position:absolute;left:6%;bottom:12%;background:var(--ink);color:#fff;padding:18px 22px;font-family:var(--cond);text-transform:uppercase;line-height:1}
+.services-art .badge b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(40px,4vw,64px);color:var(--yellow);letter-spacing:.02em}
+.services-art .badge span{font-weight:700;font-style:italic;letter-spacing:.14em;font-size:14px}
+
+/* ---------- Resultados ---------- */
+.results{background:var(--ink);padding-top:clamp(80px,9vw,140px)}
+.results-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;padding:0 var(--g) clamp(32px,4vw,56px)}
+.results-head .h-sec span{color:var(--yellow);opacity:1}
+.results-head p{max-width:440px;color:rgba(255,255,255,.7)}
+.results-head a{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-family:var(--cond);font-weight:800;font-style:italic;text-transform:uppercase;letter-spacing:.12em;color:var(--yellow)}
+.results-head a svg{width:18px;height:18px}
+.cars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
+.car{position:relative;overflow:hidden;aspect-ratio:4/3;background:#111}
+.car img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .5s}
+.car::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(5,12,74,.9));opacity:.85;transition:opacity .4s}
+.car figcaption{position:absolute;left:clamp(16px,2vw,32px);right:clamp(16px,2vw,32px);bottom:clamp(14px,1.8vw,28px);z-index:1;display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.car figcaption b{display:block;font-family:var(--cond);font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(22px,1.9vw,32px);line-height:1}
+.car figcaption small{font-family:var(--cond);font-weight:600;letter-spacing:.16em;text-transform:uppercase;font-size:13px;color:var(--yellow)}
+.car .num{font-family:var(--display);font-size:clamp(36px,3vw,52px);line-height:.8;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.7)}
+.car:hover img{transform:scale(1.06)}
+
+/* ---------- Acabamentos ---------- */
+.finishes{position:relative;background:var(--blue);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,2fr);overflow:hidden}
+.finishes::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,255,255,.035) 0 2px,transparent 2px 22px);pointer-events:none}
+.finishes-text{position:relative;padding:clamp(80px,9vw,140px) var(--g)}
+.finishes-text .h-sec span{color:var(--yellow);opacity:1}
+.finishes-text>p{margin-top:22px;color:rgba(255,255,255,.78);max-width:460px}
+.finish-list{list-style:none;margin-top:clamp(28px,3vw,44px);border-top:1px solid var(--line)}
+.finish-list li{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);font-family:var(--cond);font-weight:800;font-style:italic;text-transform:uppercase;font-size:clamp(18px,1.4vw,22px);letter-spacing:.04em}
+.finish-list li i{width:28px;height:28px;border-radius:50%;flex:none;box-shadow:0 0 0 3px rgba(255,255,255,.18)}
+.finish-list li small{margin-left:auto;font-family:var(--body);font-style:normal;font-weight:500;text-transform:none;letter-spacing:0;font-size:14px;color:rgba(255,255,255,.6);text-align:right}
+.sw-diamond{background:conic-gradient(from 20deg,#111 0 12%,#e9ecef 12% 25%,#111 25% 37%,#e9ecef 37% 50%,#111 50% 62%,#e9ecef 62% 75%,#111 75% 87%,#e9ecef 87%)}
+.sw-black{background:radial-gradient(circle at 35% 30%,#555,#000 60%)}
+.sw-graphite{background:radial-gradient(circle at 35% 30%,#6c6f75,#2b2d31 70%)}
+.sw-custom{background:conic-gradient(var(--green),var(--yellow),var(--sky),var(--green))}
+.finish-photos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;align-content:stretch}
+.finish-photos figure{position:relative;overflow:hidden;min-height:clamp(420px,62vw,860px)}
+.finish-photos img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.finish-photos figure:hover img{transform:scale(1.05)}
+.finish-photos figcaption{position:absolute;left:14px;top:14px;background:var(--yellow);color:var(--blue-deep);font-family:var(--cond);font-weight:900;font-style:italic;text-transform:uppercase;letter-spacing:.06em;font-size:15px;padding:6px 14px;clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%)}
+
+/* ---------- Processo ---------- */
+.process{background:var(--paper);color:var(--ink);padding:clamp(80px,9vw,140px) var(--g)}
+.process-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:clamp(36px,4vw,64px)}
+.process-head .h-sec span{color:var(--blue)}
+.process-head p{max-width:420px;color:var(--muted)}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));counter-reset:step}
+.step{position:relative;padding:28px clamp(16px,2vw,36px) 10px;border-left:2px solid #d6d9e4}
+.step:first-child{border-left-color:var(--blue)}
+.step::before{counter-increment:step;content:"0" counter(step);display:block;font-family:var(--display);font-size:clamp(64px,7vw,120px);line-height:.9;color:transparent;-webkit-text-stroke:2px var(--blue);transition:color .3s}
+.step:hover::before{color:var(--blue)}
+.step h3{font-family:var(--cond);font-weight:800;font-style:italic;text-transform:uppercase;font-size:clamp(22px,1.8vw,30px);line-height:1;margin-top:18px}
+.step p{margin-top:10px;color:var(--muted);font-size:15px}
+.step .bar{position:absolute;top:-2px;left:-2px;height:4px;width:46px;background:var(--yellow)}
+
+/* ---------- CTA ---------- */
+.cta{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);min-height:80vh;background:var(--ink);overflow:hidden}
+.cta-art{position:relative;display:grid;place-items:center;padding:60px 0}
+.cta-art::before{content:"";position:absolute;inset:0;background:var(--yellow);clip-path:polygon(0 0,62% 0,88% 100%,0 100%)}
+.cta-art::after{content:"";position:absolute;inset:0;background:var(--green);clip-path:polygon(62% 0,70% 0,96% 100%,88% 100%)}
+.wheel{--d:min(36vw,560px);position:relative;z-index:1;width:var(--d);height:var(--d);border-radius:50%;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.45),0 0 0 10px #0d0f14,0 0 0 12px rgba(255,255,255,.15)}
+.wheel img{position:absolute;max-width:none;width:155.1%;left:-28%;top:-15.4%;will-change:transform}
+.wheel-spin{position:absolute;inset:0;transform-origin:50% 50%}
+.cta-text{position:relative;padding:clamp(60px,7vw,120px) var(--g);display:flex;flex-direction:column;justify-content:center;background:radial-gradient(70% 80% at 80% 20%,rgba(28,107,230,.35),transparent 70%)}
+.cta-text .h-sec{font-size:clamp(46px,6.4vw,124px)}
+.cta-text .h-sec strong em{font-style:italic;color:var(--yellow)}
+.cta-text p{margin-top:22px;font-size:clamp(16px,1.25vw,20px);color:rgba(255,255,255,.78);max-width:560px}
+.cta-actions{display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px;margin-top:34px}
+.cta-phone{font-family:var(--cond);font-weight:800;font-style:italic;font-size:clamp(22px,2vw,32px);letter-spacing:.04em}
+.cta-phone small{display:block;font-weight:600;font-style:normal;font-size:12px;letter-spacing:.22em;color:rgba(255,255,255,.55);text-transform:uppercase}
+
+/* ---------- Localização ---------- */
+.location{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr);min-height:92vh;background:var(--blue-deep)}
+.loc-photo{position:relative;overflow:hidden;min-height:520px}
+.loc-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.loc-photo:hover img{transform:scale(1.04)}
+.loc-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,12,74,.15) 50%,rgba(5,12,74,.85))}
+.loc-photo figcaption{position:absolute;left:var(--g);right:var(--g);bottom:28px;z-index:1;font-family:var(--cond);font-weight:800;font-style:italic;text-transform:uppercase;letter-spacing:.14em;font-size:15px;display:flex;align-items:center;gap:14px}
+.loc-map{position:relative;min-height:520px;background:#dfe3ea}
+.loc-map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:saturate(1.1) contrast(1.02)}
+.loc-card{position:absolute;left:clamp(16px,3vw,48px);bottom:clamp(16px,3vw,48px);z-index:1;width:min(460px,calc(100% - 32px));background:var(--blue);padding:clamp(24px,2.6vw,40px);box-shadow:0 30px 60px rgba(5,12,74,.45)}
+.loc-card::before{content:"";position:absolute;left:0;top:0;right:0;height:5px;background:linear-gradient(90deg,var(--green) 0 33%,var(--yellow) 33% 66%,var(--sky) 66%)}
+.loc-card .h-sec{font-size:clamp(38px,3.6vw,64px);margin-top:14px}
+.loc-card .h-sec span{color:var(--yellow);opacity:1}
+.loc-addr{display:flex;gap:12px;margin-top:20px;font-size:clamp(16px,1.15vw,19px);line-height:1.4}
+.loc-addr svg{width:24px;height:24px;flex:none;color:var(--yellow);margin-top:2px}
+.loc-addr b{display:block;font-weight:600}
+.loc-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.loc-actions .btn{padding:.85em 1.3em;font-size:15px}
+
+/* ---------- Rodapé ---------- */
+.footer{background:var(--blue-deep);padding:clamp(60px,6vw,90px) var(--g) 28px}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.footer .logo{width:min(320px,70vw)}
+.footer-brand p{margin-top:18px;color:rgba(255,255,255,.65);max-width:380px}
+.footer h4{font-family:var(--cond);font-weight:800;font-style:italic;text-transform:uppercase;letter-spacing:.16em;font-size:15px;color:var(--yellow);margin-bottom:16px}
+.footer ul{list-style:none;display:grid;gap:10px;color:rgba(255,255,255,.75)}
+.footer ul a{display:inline-flex;align-items:center;gap:10px;transition:color .2s}
+.footer ul a:hover{color:#fff}
+.footer ul svg{width:18px;height:18px;color:var(--yellow)}
+.footer-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-size:13px;color:rgba(255,255,255,.5)}
+
+/* ---------- WhatsApp flutuante ---------- */
+.wa-float{position:fixed;right:20px;bottom:20px;z-index:60;width:62px;height:62px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.35);transition:transform .25s}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:32px;height:32px;color:#fff}
+.wa-float::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25d366;animation:pulse 2.2s infinite}
+@keyframes pulse{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+
+/* ---------- Animação de entrada ---------- */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
+
+/* ---------- Responsivo ---------- */
+@media (max-width:1180px){
+  .svc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:960px){
+  .nav-links,.nav .btn{display:none}
+  .nav-toggle{display:block}
+  .nav.open{background:var(--blue-deep)}
+  .nav.open .nav-links{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--blue-deep);padding:8px var(--g) 24px}
+  .nav.open .nav-links a{padding:14px 0;border-bottom:1px solid var(--line);font-size:20px}
+
+  .hero{justify-content:flex-end}
+  .hero-photo,.hero-slash{width:100%;clip-path:none}
+  .hero-slash{display:none}
+  .hero-photo::after{background:linear-gradient(180deg,rgba(5,12,74,.55) 0%,rgba(10,26,143,.35) 35%,rgba(10,26,143,.92) 70%,var(--blue) 100%)}
+  .hero-content{width:100%;padding-bottom:150px}
+  .hero .logo{width:100%}
+  .hero-chip{display:none}
+
+  .services,.finishes,.cta{grid-template-columns:1fr}
+  .services-art{min-height:80vw}
+  .services-head,.results-head,.process-head{flex-direction:column;align-items:flex-start}
+  .cars{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:86vw;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--g);gap:10px;scrollbar-width:none}
+  .cars::-webkit-scrollbar{display:none}
+  .car{scroll-snap-align:center}
+  .results{padding-bottom:48px}
+  .finishes-text{padding-bottom:40px}
+  .finish-photos{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:72vw;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+  .finish-photos::-webkit-scrollbar{display:none}
+  .finish-photos figure{min-height:96vw;scroll-snap-align:start}
+  .steps{grid-template-columns:1fr 1fr;row-gap:36px}
+  .cta-art{padding:70px 0}
+  .location{grid-template-columns:1fr}
+  .loc-photo{min-height:110vw}
+  .loc-map{min-height:0;display:flex;flex-direction:column}
+  .loc-map iframe{position:relative;height:70vh;order:2}
+  .loc-card{position:relative;left:auto;bottom:auto;width:100%;box-shadow:none;order:1}
+  .wheel{--d:70vw}
+}
+@media (max-width:560px){
+  .svc-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .svc{min-height:150px}
+  .svc p{display:none}
+  .steps{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .hero-foot ul{display:none}
+  .hero-actions .btn{flex:1 1 100%;justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- Filtro que remove o fundo azul da logo (fica transparente sobre qualquer fundo escuro) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="keyBlue" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  3.5 3.5 0 0 -0.65"/>
+  </filter>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.5 15l-1.4 5.1 5.24-1.37A9.9 9.9 0 1 0 12.04 2Zm0 18.1c-1.5 0-2.97-.4-4.25-1.16l-.3-.18-3.1.82.83-3.03-.2-.31a8.2 8.2 0 1 1 7.02 3.86Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.22-.08-.39-.12-.55.13-.16.24-.63.8-.78.96-.14.16-.29.18-.53.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47a.9.9 0 0 0-.65.3c-.22.25-.86.84-.86 2.04 0 1.2.88 2.37 1 2.53.12.16 1.73 2.64 4.19 3.7.59.25 1.04.4 1.4.52.59.19 1.12.16 1.55.1.47-.07 1.46-.6 1.66-1.18.2-.57.2-1.07.15-1.17-.06-.1-.22-.16-.47-.28Z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M7 2.5h10A4.5 4.5 0 0 1 21.5 7v10a4.5 4.5 0 0 1-4.5 4.5H7A4.5 4.5 0 0 1 2.5 17V7A4.5 4.5 0 0 1 7 2.5Z"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></symbol>
+</svg>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a href="#topo" class="logo" aria-label="Roda20 Brasil — início"><img src="assets/logo.webp" alt=""></a>
+  <nav class="nav-links" id="navLinks">
+    <a href="#servicos">Serviços</a>
+    <a href="#resultados">Resultados</a>
+    <a href="#acabamentos">Acabamentos</a>
+    <a href="#processo">Processo</a>
+    <a href="#localizacao">Onde estamos</a>
+  </nav>
+  <a class="btn btn--yellow" href="https://wa.me/5534997694900?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20um%20or%C3%A7amento." target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Orçamento</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+  </button>
+</header>
+
+<main id="topo">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"><img src="assets/fachada.webp" alt=""></div>
+  <div class="hero-slash s3" aria-hidden="true"></div>
+  <div class="hero-slash s2" aria-hidden="true"></div>
+  <div class="hero-slash s1" aria-hidden="true"></div>
+  <div class="hero-photo"><img src="assets/fachada.webp" alt="Fachada da loja Roda20 Brasil com um Porsche de rodas pretas na frente"></div>
+
+  <div class="hero-content">
+    <p class="eyebrow reveal"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span>Especialista em rodas</p>
+    <h1 class="sr-only">Roda20 Brasil — Especialista em recuperação de rodas</h1>
+    <div class="logo reveal d1" aria-hidden="true"><img src="assets/logo.webp" alt=""></div>
+    <p class="hero-tag reveal d2">Sua roda de volta ao padrão de fábrica — ou melhor.</p>
+    <div class="hero-actions reveal d3">
+      <a class="btn btn--yellow" href="https://wa.me/5534997694900?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20um%20or%C3%A7amento." target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Fazer orçamento</a>
+      <a class="btn btn--ghost" href="#resultados">Ver resultados</a>
+    </div>
+  </div>
+
+  <div class="hero-foot">
+    <ul aria-label="Principais serviços"><li>Solda</li><li>Desempeno</li><li>Pintura</li><li>Personalização</li></ul>
+    <a class="hero-chip" href="#localizacao"><svg><use href="#i-pin"/></svg>Rua Raimunda Lopes da Cunha, 19</a>
+  </div>
+</section>
+
+<!-- ============ FAIXA ============ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Solda</span><span>Desempeno</span><span>Pintura</span><span>Diamantação</span><span>Reforma</span><span>Revitalização</span><span>Personalização</span>
+    <span>Solda</span><span>Desempeno</span><span>Pintura</span><span>Diamantação</span><span>Reforma</span><span>Revitalização</span><span>Personalização</span>
+  </div>
+</div>
+
+<!-- ============ SERVIÇOS ============ -->
+<section class="services" id="servicos">
+  <div class="services-main">
+    <div class="services-head">
+      <h2 class="h-sec reveal"><span>O que a gente faz</span><strong>Serviços</strong></h2>
+      <p class="reveal d1">Da roda torta à roda personalizada: estrutura, acabamento e cor no mesmo lugar, com o cuidado que o seu carro merece.</p>
+    </div>
+    <div class="svc-grid">
+      <article class="svc reveal">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M10 38 30 18M26 14l8 8M30 10l8 8-4 4-8-8z"/><path d="M8 26l3 2M6 34l4-1M14 42l1-4M18 30l-2 3"/></svg>
+        <div><h3>Solda</h3><p>Trincas e quebras recuperadas com segurança.</p></div>
+      </article>
+      <article class="svc reveal d1">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><circle cx="24" cy="24" r="15"/><circle cx="24" cy="24" r="4"/><path d="M24 4v6M24 38v6M4 24h6M38 24h6"/><path d="M33 6l-2 4 4 1"/></svg>
+        <div><h3>Desempeno</h3><p>Roda empenada volta a rodar reta.</p></div>
+      </article>
+      <article class="svc reveal d2">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M14 8h16v10H14zM30 11h6M22 18v6M17 24h10l-2 16h-6z"/><path d="M40 9v.01M43 13v.01M40 17v.01"/></svg>
+        <div><h3>Pintura</h3><p>Qualquer cor, brilho ou fosco.</p></div>
+      </article>
+      <article class="svc reveal d3">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"><path d="M12 8h24l8 11-20 22L4 19z"/><path d="M4 19h40M18 8l-4 11 10 22 10-22-4-11"/></svg>
+        <div><h3>Diamantação</h3><p>Face usinada com brilho de metal.</p></div>
+      </article>
+      <article class="svc reveal">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M30 6a9 9 0 0 0-8 12L7 33a4 4 0 0 0 6 6l15-15a9 9 0 0 0 12-8l-6 2-4-4z"/></svg>
+        <div><h3>Reforma</h3><p>Ralados, riscos e corrosão eliminados.</p></div>
+      </article>
+      <article class="svc reveal d1">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M40 20A16 16 0 0 0 10 14M8 28a16 16 0 0 0 30 6"/><path d="M10 6v8h8M38 42v-8h-8"/></svg>
+        <div><h3>Revitalização</h3><p>Aparência de roda nova, sem trocar.</p></div>
+      </article>
+      <article class="svc reveal d2">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M24 4l4 12 12 4-12 4-4 12-4-12-12-4 12-4z"/><path d="M38 34l1.5 4.5L44 40l-4.5 1.5L38 46l-1.5-4.5L32 40l4.5-1.5z"/></svg>
+        <div><h3>Personalização</h3><p>Bicolor, detalhes e cores exclusivas.</p></div>
+      </article>
+      <a class="svc svc--cta reveal d3" href="https://wa.me/5534997694900?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20um%20or%C3%A7amento." target="_blank" rel="noopener">
+        <svg><use href="#i-wa"/></svg>
+        <div><span class="arrow">→</span><h3>Orçamento pelo WhatsApp</h3></div>
+      </a>
+    </div>
+  </div>
+  <div class="services-art" aria-hidden="true">
+    <div class="photo"><img src="assets/rodas-diamantadas-par.webp" alt=""></div>
+    <div class="badge reveal"><b>100%</b><span>Foco em rodas</span></div>
+  </div>
+</section>
+
+<!-- ============ RESULTADOS ============ -->
+<section class="results" id="resultados">
+  <div class="results-head">
+    <h2 class="h-sec reveal"><span>Clientes satisfeitos</span><strong>Resultados</strong></h2>
+    <div class="reveal d1">
+      <p>Alguns dos carros que passaram pela Roda20 e saíram com as rodas impecáveis.</p>
+      <a href="https://www.instagram.com/roda20brasil/" target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg>Mais no Instagram</a>
+    </div>
+  </div>
+  <div class="cars">
+    <figure class="car reveal">
+      <img src="assets/porsche-cayenne.webp" alt="Porsche Cayenne Coupé preto com rodas pretas recuperadas" loading="lazy">
+      <figcaption><div><small>Porsche</small><b>Cayenne Coupé</b></div><span class="num">01</span></figcaption>
+    </figure>
+    <figure class="car reveal d1">
+      <img src="assets/bmw-x1.webp" alt="BMW X1 azul com rodas prata recuperadas" loading="lazy">
+      <figcaption><div><small>BMW</small><b>X1</b></div><span class="num">02</span></figcaption>
+    </figure>
+    <figure class="car reveal d2">
+      <img src="assets/mercedes-classe-a.webp" alt="Mercedes-Benz Classe A cinza com rodas pretas" loading="lazy">
+      <figcaption><div><small>Mercedes-Benz</small><b>Classe A</b></div><span class="num">03</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ ACABAMENTOS ============ -->
+<section class="finishes" id="acabamentos">
+  <div class="finishes-text">
+    <h2 class="h-sec reveal"><span>Escolha o seu</span><strong>Acabamento</strong></h2>
+    <p class="reveal d1">Original de fábrica ou do seu jeito. A gente prepara, pinta e finaliza cada roda para durar.</p>
+    <ul class="finish-list">
+      <li class="reveal"><i class="sw-diamond"></i>Diamantada<small>Bicolor, face usinada</small></li>
+      <li class="reveal d1"><i class="sw-black"></i>Preto brilho<small>Visual esportivo</small></li>
+      <li class="reveal d2"><i class="sw-graphite"></i>Grafite fosco<small>Discreto e moderno</small></li>
+      <li class="reveal d3"><i class="sw-custom"></i>Personalizada<small>A cor que você quiser</small></li>
+    </ul>
+  </div>
+  <div class="finish-photos">
+    <figure class="reveal"><img src="assets/roda-diamantada.webp" alt="Roda diamantada preta e prata no suporte da oficina" loading="lazy"><figcaption>Diamantada</figcaption></figure>
+    <figure class="reveal d1"><img src="assets/rodas-diamantadas-par.webp" alt="Jogo de rodas diamantadas recém finalizadas" loading="lazy"><figcaption>Diamantada</figcaption></figure>
+    <figure class="reveal d2"><img src="assets/roda-grafite-fosco.webp" alt="Roda pintada em grafite fosco" loading="lazy"><figcaption>Grafite fosco</figcaption></figure>
+  </div>
+</section>
+
+<!-- ============ PROCESSO ============ -->
+<section class="process" id="processo">
+  <div class="process-head">
+    <h2 class="h-sec reveal"><span>Simples assim</span><strong>Como funciona</strong></h2>
+    <p class="reveal d1">Sem complicação: você manda a foto, a gente avalia e devolve a roda pronta pra rodar.</p>
+  </div>
+  <div class="steps">
+    <div class="step reveal"><span class="bar"></span><h3>Envie uma foto</h3><p>Mande fotos da roda pelo WhatsApp e conte o que aconteceu.</p></div>
+    <div class="step reveal d1"><h3>Avaliação</h3><p>Analisamos o dano e passamos o orçamento e o prazo.</p></div>
+    <div class="step reveal d2"><h3>Recuperação</h3><p>Solda, desempeno, preparação e pintura com o acabamento escolhido.</p></div>
+    <div class="step reveal d3"><h3>Pronta pra rodar</h3><p>Conferência final e entrega com a roda impecável.</p></div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta" id="contato">
+  <div class="cta-art" aria-hidden="true">
+    <div class="wheel"><div class="wheel-spin" id="wheelSpin"><img src="assets/roda-diamantada.webp" alt=""></div></div>
+  </div>
+  <div class="cta-text">
+    <p class="eyebrow reveal"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span>Orçamento sem compromisso</p>
+    <h2 class="h-sec reveal d1" style="margin-top:22px"><span>Sua roda merece</span><strong>Ficar <em>nova</em> de novo.</strong></h2>
+    <p class="reveal d2">Mande uma foto da sua roda pelo WhatsApp e receba a avaliação direto com a nossa equipe.</p>
+    <div class="cta-actions reveal d3">
+      <a class="btn btn--green" href="https://wa.me/5534997694900?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20um%20or%C3%A7amento." target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Chamar no WhatsApp</a>
+      <div class="cta-phone"><small>Ou ligue</small><a href="tel:+5534997694900">(34) 99769-4900</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOCALIZAÇÃO ============ -->
+<section class="location" id="localizacao">
+  <figure class="loc-photo">
+    <img src="assets/fachada-loja.webp" alt="Fachada da loja Roda20 Brasil — Especialista em Recuperação de Rodas" loading="lazy">
+    <figcaption><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span>Nossa loja</figcaption>
+  </figure>
+  <div class="loc-map">
+    <iframe title="Mapa: Roda20 Brasil — Rua Raimunda Lopes da Cunha, 19" src="https://maps.google.com/maps?q=Rua%20Raimunda%20Lopes%20da%20Cunha%2C%2019%2C%20Caratinga%20-%20MG&z=17&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    <div class="loc-card reveal">
+      <p class="eyebrow">Visite a loja</p>
+      <h2 class="h-sec"><span>Venha conhecer</span><strong>Onde estamos</strong></h2>
+      <p class="loc-addr"><svg><use href="#i-pin"/></svg><span><b>Rua Raimunda Lopes da Cunha, 19</b>Caratinga - MG</span></p>
+      <div class="loc-actions">
+        <a class="btn btn--yellow" href="https://www.google.com/maps/dir/?api=1&destination=Rua%20Raimunda%20Lopes%20da%20Cunha%2C%2019%2C%20Caratinga%20-%20MG" target="_blank" rel="noopener"><svg><use href="#i-pin"/></svg>Como chegar</a>
+        <a class="btn btn--ghost" href="https://wa.me/5534997694900?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20um%20or%C3%A7amento." target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ RODAPÉ ============ -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo" role="img" aria-label="Roda20 Brasil"><img src="assets/logo.webp" alt=""></div>
+      <p>Especialistas em rodas automotivas: reforma, pintura, diamantação, solda, desempeno e revitalização.</p>
+    </div>
+    <div>
+      <h4>Navegue</h4>
+      <ul><li><a href="#servicos">Serviços</a></li><li><a href="#resultados">Resultados</a></li><li><a href="#acabamentos">Acabamentos</a></li><li><a href="#processo">Como funciona</a></li></ul>
+    </div>
+    <div>
+      <h4>Serviços</h4>
+      <ul><li>Solda e desempeno</li><li>Pintura</li><li>Diamantação</li><li>Personalização</li></ul>
+    </div>
+    <div>
+      <h4>Contato</h4>
+      <ul>
+        <li><a href="https://wa.me/5534997694900" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>(34) 99769-4900</a></li>
+        <li><a href="https://www.instagram.com/roda20brasil/" target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg>@roda20brasil</a></li>
+        <li><a href="#localizacao"><svg><use href="#i-pin"/></svg>Rua Raimunda Lopes da Cunha, 19 — Caratinga/MG</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom"><span>© <span id="ano">2026</span> Roda20 Brasil. Todos os direitos reservados.</span><span>Especialista em recuperação de rodas</span></div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/5534997694900?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20um%20or%C3%A7amento." target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg><use href="#i-wa"/></svg></a>
+
+<script>
+(() => {
+  const nav = document.getElementById('nav');
+  const toggle = document.getElementById('navToggle');
+  const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 40);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  toggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open'); toggle.setAttribute('aria-expanded', false);
+  }));
+
+  // Revela elementos ao entrar na tela
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: .15, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Roda gira conforme a rolagem
+  const spin = document.getElementById('wheelSpin');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && spin) {
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (ticking) return; ticking = true;
+      requestAnimationFrame(() => { spin.style.transform = `rotate(${window.scrollY * 0.25}deg)`; ticking = false; });
+    }, { passive: true });
+  }
+
+  document.getElementById('ano').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
