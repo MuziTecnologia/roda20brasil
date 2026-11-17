@@ -6,17 +6,31 @@ Landing page da **Roda20 Brasil** — especialista em recuperação de rodas (so
 📱 WhatsApp: [(34) 99769-4900](https://wa.me/5534997694900)
 📸 Instagram: [@roda20brasil](https://www.instagram.com/roda20brasil/)
 
-## Estrutura
-
-- `index.html` — página completa (HTML, CSS e JS no mesmo arquivo)
-- `assets/` — logo e fotos da loja, serviços e resultados
+Feito com **Next.js 16** (App Router) + React 19 + TypeScript.
 
 ## Rodar localmente
 
-Abra o `index.html` no navegador ou sirva a pasta com qualquer servidor estático, por exemplo:
-
 ```bash
-npx serve .
+npm install
+npm run dev
 ```
 
-Pode ser publicado direto no GitHub Pages (Settings → Pages → branch `main`, pasta `/`).
+Abra http://localhost:3000.
+
+## Build de produção
+
+```bash
+npm run build
+npm start
+```
+
+A página é gerada como estática, então dá para publicar direto na [Vercel](https://vercel.com) importando este repositório.
+
+## Estrutura
+
+- `app/layout.tsx` — fontes (next/font), metadados/SEO e sprite de ícones
+- `app/page.tsx` — monta a página com as seções
+- `app/globals.css` — todos os estilos
+- `components/` — uma seção por arquivo (`Hero`, `Services`, `Results`, `Finishes`, `Process`, `Cta`, `Location`, `Footer`…)
+- `lib/site.ts` — **dados da loja** (telefone, endereço, serviços, carros, acabamentos, passos). Edite aqui para atualizar o site.
+- `public/assets/` — logo e fotos
