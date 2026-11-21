@@ -6,9 +6,10 @@ import { site, whatsappUrl } from "@/lib/site";
 
 export function Hero() {
   return (
-    <section className="hero">
+    <section className="hero" aria-labelledby="titulo-principal">
+      {/* fundo desfocado: imagem pequena e leve basta */}
       <div className="hero-bg" aria-hidden="true">
-        <Image src="/assets/fachada.webp" alt="" fill sizes="100vw" priority quality={50} />
+        <Image src="/assets/fachada.webp" alt="" fill sizes="25vw" quality={40} />
       </div>
       <div className="hero-slash s3" aria-hidden="true" />
       <div className="hero-slash s2" aria-hidden="true" />
@@ -16,7 +17,7 @@ export function Hero() {
       <div className="hero-photo">
         <Image
           src="/assets/fachada.webp"
-          alt="Fachada da loja Roda20 Brasil com um Porsche de rodas pretas na frente"
+          alt="Fachada da Roda20 Brasil em Caratinga, com um Porsche de rodas pretas estacionado na frente"
           fill
           sizes="(max-width: 960px) 100vw, 46vw"
           priority
@@ -24,17 +25,19 @@ export function Hero() {
       </div>
 
       <div className="hero-content">
-        <p className="eyebrow reveal">
+        <p className="eyebrow intro">
           <Stripes />
           Especialista em rodas
         </p>
-        <h1 className="sr-only">Roda20 Brasil — Especialista em recuperação de rodas</h1>
-        <div className="reveal d1" aria-hidden="true">
-          <Logo priority />
+        <h1 id="titulo-principal" className="sr-only">
+          Recuperação de rodas em Caratinga/MG — {site.name}
+        </h1>
+        <div className="intro d1" aria-hidden="true">
+          <Logo priority sizes="(max-width: 960px) 92vw, 52vw" />
         </div>
-        <p className="hero-tag reveal d2">Sua roda de volta ao padrão de fábrica — ou melhor.</p>
-        <div className="hero-actions reveal d3">
-          <a className="btn btn--yellow" href={whatsappUrl} target="_blank" rel="noopener">
+        <p className="hero-tag intro d2">Sua roda de volta ao padrão de fábrica — ou melhor.</p>
+        <div className="hero-actions intro d3">
+          <a className="btn btn--yellow" href={whatsappUrl} target="_blank" rel="noopener" data-track="whatsapp" data-track-local="hero" data-lead>
             <Icon name="wa" />
             Fazer orçamento
           </a>

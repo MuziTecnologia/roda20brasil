@@ -1,12 +1,9 @@
 import type { ServiceIcon as ServiceIconName } from "@/lib/site";
 
-/** Sprite global: filtro que remove o fundo azul da logo + ícones reutilizáveis. */
+/** Sprite global com os ícones reutilizáveis (WhatsApp, Instagram, localização). */
 export function IconSprite() {
   return (
     <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true">
-      <filter id="keyBlue" colorInterpolationFilters="sRGB">
-        <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  3.5 3.5 0 0 -0.65" />
-      </filter>
       <symbol id="i-wa" viewBox="0 0 24 24">
         <path
           fill="currentColor"
@@ -18,6 +15,10 @@ export function IconSprite() {
         <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" strokeWidth="2" />
         <circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" />
       </symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="2" />
+        <path d="M12 7v5l3 2" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </symbol>
       <symbol id="i-pin" viewBox="0 0 24 24">
         <path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" />
       </symbol>
@@ -25,7 +26,7 @@ export function IconSprite() {
   );
 }
 
-export function Icon({ name }: { name: "wa" | "ig" | "pin" }) {
+export function Icon({ name }: { name: "wa" | "ig" | "pin" | "clock" }) {
   return (
     <svg aria-hidden="true">
       <use href={`#i-${name}`} />

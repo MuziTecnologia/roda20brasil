@@ -10,12 +10,24 @@ import { Location } from "@/components/Location";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import { RevealObserver } from "@/components/RevealObserver";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata } from "@/lib/seo";
+import { businessSchema, graph, websiteSchema } from "@/lib/schema";
+
+export const metadata = pageMetadata({
+  title: "Recuperação de Rodas em Caratinga | Roda20 Brasil",
+  absoluteTitle: true,
+  description:
+    "Especialistas em recuperação, reforma, desempeno, pintura e diamantação de rodas em Caratinga/MG. Conheça a Roda20 Brasil e solicite seu orçamento pelo WhatsApp.",
+  path: "/",
+});
 
 export default function Home() {
   return (
     <>
+      <JsonLd data={graph(businessSchema(), websiteSchema())} />
       <Nav />
-      <main id="topo">
+      <main id="conteudo">
         <Hero />
         <Ticker />
         <Services />

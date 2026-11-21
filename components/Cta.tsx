@@ -1,9 +1,16 @@
 import { Icon } from "./Icons";
 import { Stripes } from "./Stripes";
 import { WheelSpin } from "./WheelSpin";
-import { site, whatsappUrl } from "@/lib/site";
+import { site, waLink } from "@/lib/site";
 
-export function Cta() {
+type Props = {
+  /** Mensagem pré-preenchida do WhatsApp (contextualizada por serviço). */
+  message?: string;
+  /** Identifica a origem do clique nos eventos de medição. */
+  trackLocal?: string;
+};
+
+export function Cta({ message, trackLocal = "chamada_final" }: Props) {
   return (
     <section className="cta" id="contato">
       <div className="cta-art" aria-hidden="true">
@@ -20,15 +27,19 @@ export function Cta() {
             Ficar <em>nova</em> de novo.
           </strong>
         </h2>
-        <p className="reveal d2">Mande uma foto da sua roda pelo WhatsApp e receba a avaliação direto com a nossa equipe.</p>
+        <p className="reveal d2">
+          Mande pelo WhatsApp uma foto da roda inteira e outra do dano de perto. A avaliação é feita direto com a nossa equipe, aqui em Caratinga.
+        </p>
         <div className="cta-actions reveal d3">
-          <a className="btn btn--green" href={whatsappUrl} target="_blank" rel="noopener">
+          <a className="btn btn--green" href={waLink(message)} target="_blank" rel="noopener" data-track="whatsapp" data-track-local={trackLocal} data-lead>
             <Icon name="wa" />
             Chamar no WhatsApp
           </a>
           <div className="cta-phone">
             <small>Ou ligue</small>
-            <a href={`tel:${site.phoneIntl}`}>{site.phoneDisplay}</a>
+            <a href={`tel:${site.phoneIntl}`} data-track="phone" data-track-local={trackLocal}>
+              {site.phoneDisplay}
+            </a>
           </div>
         </div>
       </div>

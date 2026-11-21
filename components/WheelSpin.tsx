@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 
 /** Roda que gira conforme a rolagem da página. */
@@ -24,9 +25,8 @@ export function WheelSpin({ src }: { src: string }) {
   return (
     <div className="wheel">
       <div className="wheel-spin" ref={ref}>
-        {/* recorte posicionado manualmente via CSS, por isso <img> simples */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={src} alt="" loading="lazy" />
+        {/* imagem otimizada e redimensionada (antes carregava o arquivo original inteiro) */}
+        <Image src={src} alt="" width={1086} height={1448} sizes="(max-width: 960px) 110vw, 56vw" />
       </div>
     </div>
   );

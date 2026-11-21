@@ -1,10 +1,11 @@
 import Image from "next/image";
+import { brandImages } from "@/lib/site";
 
-/** Logo recortada da arte original; o filtro #keyBlue deixa o fundo azul transparente. */
-export function Logo({ className = "", priority = false }: { className?: string; priority?: boolean }) {
+/** Logo com fundo transparente (gerada por scripts/gerar-imagens.mjs a partir da arte original). */
+export function Logo({ className = "", priority = false, sizes = "180px" }: { className?: string; priority?: boolean; sizes?: string }) {
   return (
     <span className={`logo ${className}`.trim()}>
-      <Image src="/assets/logo.webp" alt="" width={1254} height={1254} priority={priority} sizes="(max-width: 960px) 130vw, 70vw" />
+      <Image src={brandImages.logoTransparent} alt="" width={980} height={245} priority={priority} sizes={sizes} />
     </span>
   );
 }

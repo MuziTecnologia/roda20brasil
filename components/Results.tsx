@@ -11,7 +11,7 @@ export function Results() {
           <strong>Resultados</strong>
         </h2>
         <div className="reveal d1">
-          <p>Alguns dos carros que passaram pela Roda20 e saíram com as rodas impecáveis.</p>
+          <p>Alguns dos carros que passaram pela Roda20 Brasil, em Caratinga, e saíram com as rodas impecáveis.</p>
           <a href={instagramUrl} target="_blank" rel="noopener">
             <Icon name="ig" />
             Mais no Instagram
