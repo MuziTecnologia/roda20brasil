@@ -25,8 +25,8 @@ export const site = {
     { days: ["Saturday"], opens: "08:00", closes: "13:00", label: "Sábado", hours: "8h às 13h" },
   ],
   // Preencha quando confirmar — só então eles entram nos dados estruturados.
-  // Ex.: postalCode: "35300-106", geo: { lat: -19.79, lng: -42.14 }
-  postalCode: undefined as string | undefined,
+  // Ex.: geo: { lat: -19.79, lng: -42.14 }
+  postalCode: "35300-106" as string | undefined,
   geo: undefined as { lat: number; lng: number } | undefined,
 };
 

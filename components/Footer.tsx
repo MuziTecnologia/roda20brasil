@@ -50,6 +50,7 @@ export function Footer() {
               <a href={mapsDirectionsUrl} target="_blank" rel="noopener" data-track="directions" data-track-local="rodape">
                 <Icon name="pin" />
                 {site.address.street}, {site.address.neighborhood} — {site.address.locality}/{site.address.region}
+                {site.postalCode && <>, CEP {site.postalCode}</>}
               </a>
             </li>
             {site.openingHours.map((h) => (

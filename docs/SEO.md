@@ -42,12 +42,11 @@ O conteúdo das páginas fica em `lib/site.ts` (`servicePages`). Para mudar um t
 
 Estes dados **não entraram no site** porque ainda não foram confirmados. Quando confirmar, preencha os campos em `lib/site.ts` e eles passam a aparecer automaticamente no schema:
 
-1. **CEP** (`postalCode`). O Google Maps mostra 35300-106 para o endereço, mas ele ainda não foi confirmado pela loja.
-2. **Coordenadas** (`geo`): use as do pino do Perfil da Empresa no Google.
-3. **Atendimento a outras cidades:** hoje só Caratinga é citada. Só acrescente outras cidades se o atendimento for confirmado.
-4. **Telefone fixo e e-mail**, se houver.
+1. **Coordenadas** (`geo`): use as do pino do Perfil da Empresa no Google.
+2. **Atendimento a outras cidades:** hoje só Caratinga é citada. Só acrescente outras cidades se o atendimento for confirmado.
+3. **Telefone fixo e e-mail**, se houver.
 
-Já confirmados e publicados no site e no schema: bairro **Limoeiro**, horário (**segunda a sexta, 8h às 18h; sábado, 8h às 13h**) e **pintura eletrostática a pó**.
+Já confirmados e publicados no site e no schema: bairro **Limoeiro**, CEP **35300-106**, horário (**segunda a sexta, 8h às 18h; sábado, 8h às 13h**) e **pintura eletrostática a pó**.
 
 ## Ações manuais necessárias
 
@@ -67,7 +66,7 @@ Já confirmados e publicados no site e no schema: bairro **Limoeiro**, horário 
 ### Perfil da Empresa no Google
 - Nome, endereço e telefone precisam ser **exatamente** os do site:
   - Roda20 Brasil
-  - Rua Raimunda Lopes da Cunha, 19 — Caratinga/MG
+  - Rua Raimunda Lopes da Cunha, 19 — Limoeiro, Caratinga/MG, CEP 35300-106
   - +55 34 99769-4900
 - Informe o site `https://www.roda20brasil.com.br`, a categoria principal (por exemplo, "Oficina de rodas" ou "Serviço de reparo de rodas") e o mesmo horário do site: segunda a sexta, 8h às 18h; sábado, 8h às 13h.
 - Publique fotos reais dos serviços e responda às avaliações. As avaliações devem ficar no Google, e não marcadas no site.

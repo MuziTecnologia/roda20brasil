@@ -37,6 +37,7 @@ export function Location({ message, trackLocal = "localizacao" }: { message?: st
             <span>
               <b>{site.address.street}</b>
               {site.address.neighborhood} · {site.address.city}
+              {site.postalCode && <> · CEP {site.postalCode}</>}
             </span>
           </address>
           <div className="loc-addr loc-hours">
